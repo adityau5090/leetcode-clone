@@ -4,6 +4,7 @@ import { db } from "@/lib/db"
 import { currentUser } from "@clerk/nextjs/server"
 import { success } from "zod";
 
+
 export const onBoardUser = async () => {
     try {
         const user = await currentUser();
@@ -46,7 +47,39 @@ export const onBoardUser = async () => {
         console.error("❌ Error on boarding user : ", error);
         return {
             success: false,
-            error: `Failed to onBoard user : ${error}`
+            error: `Failed to onBoard user : ${error.message}`
+        }
+    }
+}
+
+export const currentUserRole = async () => {
+    try {
+        const user = await currentUser();
+
+        if(!user){
+            return {
+                success: false,
+                error: "No authenticated user found"
+            }
+        }
+
+        const {id} = user;
+
+        const userRole = await db.user.findUnique({
+            where: {
+                clerkId: id
+            },
+            select: {
+               role: true     
+            }
+        })
+
+        return userRole.role;
+    } catch (error) {
+        console.error("❌Error fetching user role : ",error);
+        return {
+            success: false,
+            error: `Failed to fetch user role : ${error.message}`
         }
     }
 }
