@@ -13,19 +13,19 @@ const Navbar = ({ userRole }) => {
         <div className={'px-6 py-4 flex justify-between gap-2'}>
           <Link href={"/"} className='flex items-center gap-2'>
             <Image src={"/logo.svg"} alt="TreeBio" width={42} height={42} />
-            <span className={'font-bold text-2xl tracking-widest text-amber-300'}>
+            <span className={'font-bold text-2xl tracking-widest text-amber-400 dark:text-amber-300'}>
               LeetCode
             </span>
           </Link>
 
           <div className={'flex flex-row items-center justify-center gap-x-4'}>
-            <Link href={'/problems'} className={'text-sm font-medium text-zinc-600  dark:text-zinc-400 hover:text-amber-600 cursor-pointer'}>
+            <Link href={'/problems'} className={'text-sm font-medium text-zinc-600  dark:text-zinc-400 hover:text-amber-600 dark:hover:text-amber-300 cursor-pointer'}>
               Problems
             </Link>
-            <Link href={'/about'} className={'text-sm font-medium text-zinc-600  dark:text-zinc-400 hover:text-amber-600 cursor-pointer'}>
+            <Link href={'/about'} className={'text-sm font-medium text-zinc-600  dark:text-zinc-400 hover:text-amber-600 dark:hover:text-amber-300 cursor-pointer'}>
               About
             </Link>
-            <Link href={'/profile'} className={'text-sm font-medium text-zinc-600  dark:text-zinc-400 hover:text-amber-600 cursor-pointer'}>
+            <Link href={'/profile'} className={'text-sm font-medium text-zinc-600  dark:text-zinc-400 hover:text-amber-600 dark:hover:text-amber-300 cursor-pointer'}>
               Profile
             </Link>
           </div>

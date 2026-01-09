@@ -2,7 +2,6 @@
 
 import { db } from "@/lib/db"
 import { currentUser } from "@clerk/nextjs/server"
-import { success } from "zod";
 
 
 export const onBoardUser = async () => {
