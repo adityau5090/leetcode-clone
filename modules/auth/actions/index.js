@@ -72,13 +72,43 @@ export const currentUserRole = async () => {
                role: true     
             }
         })
-
-        return userRole.role;
+        // console.log(userRole.role)
+        return userRole?.role?? null;
     } catch (error) {
         console.error("❌Error fetching user role : ",error);
         return {
             success: false,
             error: `Failed to fetch user role : ${error.message}`
+        }
+    }
+}
+
+export const getCurrentUser = async () => {
+    try {
+        const user = await currentUser();
+
+        const dbUser = await db.user.findUnique({
+            where: {
+                clerkId: user.id
+            },
+            select: {
+                id: true,
+            }
+        }) 
+
+        if(!dbUser){
+            return {
+                success: false,
+                error: "User not found",
+            }
+        }
+
+        return dbUser
+    } catch (error) {
+        console.error("Failed to fetch current user : ", error);
+        return {
+            success: false,
+            error: error.message || "Failed to fetch current user"
         }
     }
 }
